@@ -20,30 +20,34 @@ public class FetcherServiceImpl implements FetcherService {
     @Override
     public WeatherDto fetchWeatherData(String uri) {
 
+        HttpClient client;
+        HttpRequest request;
         HttpResponse<String> response;
+        ObjectMapper mapper = new ObjectMapper();
+
         try {
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
+            client = HttpClient.newHttpClient();
+            request = HttpRequest.newBuilder()
                     .GET()
                     .header("accept", "application/json")
                     .uri(URI.create(uri))
                     .build();
             try {
                 response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            } catch (IOException | InterruptedException e) {
+            }
+            catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
 
-            ObjectMapper mapper = new ObjectMapper();
-
             try {
-                weatherDto = mapper.readValue(response.body(), new TypeReference<>() {
-                });
-            } catch (JsonProcessingException e) {
+                weatherDto = mapper.readValue(response.body(), new TypeReference<>() {});
+            }
+            catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             }
             System.out.println(weatherDto);
-        }catch (Exception e){
+        }
+        catch (Exception e){
             System.out.println(e.getMessage());
         }
         return weatherDto;

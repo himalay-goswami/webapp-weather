@@ -1,16 +1,11 @@
 package com.himalaya.dao;
 
 import com.himalaya.model.Weather;
-import com.himalaya.model.WeatherDto;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public class WeatherDao {
-    public WeatherDto getLatestData() {
-        return null;
-    }
+public interface WeatherDao {
 
-    public void save(Weather weather) {
+    /* the party */
+    public Weather getLatestData();
 
-    }
+    public void save(Weather weather);
 }

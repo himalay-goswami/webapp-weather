@@ -1,20 +1,18 @@
 package com.himalaya.model;
 
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import lombok.*;
+
+import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
 @RequiredArgsConstructor
+@Table(name = "Weather", schema = "weather_data")
 public class Weather {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private int id;
 
@@ -23,8 +21,8 @@ public class Weather {
     @Column(name = "temperature")
     private double temperature;
 
-    @Column(name = "updatedAt")
-    private String updatedAt;
+    @Column(name = "timeStamp")
+    private String timeStamp;
 
     public int getId() {
         return id;
@@ -56,11 +54,11 @@ public class Weather {
     }
 
     public String updatedAt() {
-        return updatedAt;
+        return timeStamp;
     }
 
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setTimeStamp(String updatedAt) {
+        this.timeStamp = updatedAt;
     }
 
     @Override
@@ -69,7 +67,7 @@ public class Weather {
                 "id=" + id +
                 ", cityName='" + cityName + '\'' +
                 ", temperature=" + temperature +
-                ", updatedAt='" + updatedAt + '\'' +
+                ", updatedAt='" + timeStamp + '\'' +
                 '}';
     }
 }

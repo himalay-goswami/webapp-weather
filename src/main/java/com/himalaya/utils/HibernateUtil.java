@@ -1,3 +1,4 @@
+/*
 package com.himalaya.utils;
 
 import com.himalaya.model.Weather;
@@ -7,6 +8,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.springframework.stereotype.Component;
 
 public class HibernateUtil {
     private static StandardServiceRegistry registry;
@@ -16,7 +18,10 @@ public class HibernateUtil {
         if (sessionFactory == null) {
             try {
 
-                registry = new StandardServiceRegistryBuilder().configure().build();
+                registry = new StandardServiceRegistryBuilder()
+                        .configure()
+                        .build();
+
                 MetadataSources sources = new MetadataSources(registry);
                 Metadata metadata = sources.getMetadataBuilder().build();
 
@@ -44,3 +49,4 @@ public class HibernateUtil {
         }
     }
 }
+*/

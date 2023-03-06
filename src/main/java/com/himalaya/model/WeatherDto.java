@@ -3,34 +3,40 @@ package com.himalaya.model;
 
 public class WeatherDto {
 
-    private long id;
-    private String name;
+    private int id;
+    private String cityName;
     private double temperature;
+    private String timeStamp;
 
-    public long id() {
+    public String timeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    public int id() {
         return id;
     }
 
-    public WeatherDto setId(long id) {
+    public void setId(int id) {
         this.id = id;
-        return this;
     }
 
     public String name() {
-        return name;
+        return cityName;
     }
 
-    public WeatherDto setName(String name) {
-        this.name = name;
-        return this;
+    public void setName(String name) {
+        this.cityName = name;
     }
 
     public double temperature() {
         return temperature;
     }
 
-    public WeatherDto setTemperature(double temperature) {
+    public void setTemperature(double temperature) {
         this.temperature = temperature;
-        return this;
     }
 }

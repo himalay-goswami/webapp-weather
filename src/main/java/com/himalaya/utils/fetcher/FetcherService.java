@@ -7,5 +7,4 @@ import org.springframework.stereotype.Component;
 public interface FetcherService {
 
     WeatherDto fetchWeatherData(String uri);
-
 }
