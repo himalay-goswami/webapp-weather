@@ -20,6 +20,8 @@ import javax.persistence.criteria.Root;
 @EnableTransactionManagement
 public class WeatherDaoImpl implements WeatherDao {
 
+    //dao class for user preference entity
+
     private final SessionFactory sessionFactory;
 
     public WeatherDaoImpl(SessionFactory sessionFactory) {

@@ -14,6 +14,9 @@ import java.util.concurrent.ExecutionException;
 @Service
 public class NotificationService {
 
+    /*this service class checks for condition fulfillment, and if met, triggers the
+    kafka sender to send notifications to multiple channels*/
+
     private final Sender sender;
 
     private final ResultService resultService;

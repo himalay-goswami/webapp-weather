@@ -13,6 +13,8 @@ import javax.persistence.*;
 @Table(name = "user_pref", schema = "weather_data")
 public class UserPref {
 
+    //entity class
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")

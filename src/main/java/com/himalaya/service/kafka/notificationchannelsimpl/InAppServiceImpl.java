@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class InAppServiceImpl {
 
+    /*
+    * this class sends a message back to the client who's subscribed to the topic using web socket*/
+
     private final SimpMessagingTemplate simpMessagingTemplate;
 
     public InAppServiceImpl(SimpMessagingTemplate simpMessagingTemplate) {

@@ -14,6 +14,11 @@ import java.util.Map;
 @Cacheable({"preference", "weather"})
 public class CachedService {
 
+    /*
+    * this class is responsible for caching, based on configuration in config package.
+    * For more clarity, I am saving values in an in-memory list, and caching the values.
+    * Database call is made only if the cache is not available. */
+
     private WeatherDto weatherCached;
 
     private final Map<String, UserPref> entityPreferences;

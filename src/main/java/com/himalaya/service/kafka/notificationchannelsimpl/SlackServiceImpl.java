@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class SlackServiceImpl {
 
+    /*
+    * Implementation class that makes use of service API to send the notification*/
+
     private final SlackServiceApi slackServiceApi;
 
     public SlackServiceImpl(SlackServiceApi slackServiceApi) {

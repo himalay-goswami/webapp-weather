@@ -15,6 +15,9 @@ import java.net.http.HttpResponse;
 @Component
 public class FetcherServiceImpl implements FetcherService {
 
+    /*
+    * fetcher utility class implementing HttpClient*/
+
     private double temperature;
 
     @Override

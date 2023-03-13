@@ -13,6 +13,10 @@ import java.util.concurrent.ExecutionException;
 @Controller
 public class PreferencesController {
 
+    /*This controller is used to receive preference values from user, and persist them
+    to database and cache layer for condition check.
+    * */
+
     private final NotificationService notificationService;
 
     private final UserPreferenceService userPreferenceService;

@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class Listener{
 
+    /*
+    * A simple kafka listener class*/
+
     @Autowired
     SlackServiceImpl emailService;
     @Autowired

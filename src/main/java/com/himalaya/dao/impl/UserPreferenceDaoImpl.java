@@ -18,6 +18,8 @@ import javax.persistence.criteria.Root;
 @EnableTransactionManagement
 public class UserPreferenceDaoImpl implements UserPreferenceDao {
 
+    //dao class for user preference entity
+
     private final SessionFactory sessionFactory;
 
     public UserPreferenceDaoImpl(SessionFactory sessionFactory) {

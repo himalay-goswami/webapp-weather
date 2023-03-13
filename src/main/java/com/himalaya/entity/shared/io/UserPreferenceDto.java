@@ -9,6 +9,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class UserPreferenceDto implements Serializable {
 
+    //local dto class for user preference
+
     private int name;
     private int value;
 

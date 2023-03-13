@@ -17,6 +17,9 @@ import java.util.concurrent.ExecutionException;
 @Service
 public class ResultService {
 
+    //entry point for fetched data from the APIs. this class makes scheduled calls to
+    //the APIs and stores weather data into database and cache after calculating mean temperature.
+
     @Autowired
     ServiceA serviceA;
     @Autowired

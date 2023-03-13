@@ -9,6 +9,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class WeatherDto implements Serializable {
 
+    //local dto class for weather object
+
     private int id;
     private String cityName;
     private double temperature;

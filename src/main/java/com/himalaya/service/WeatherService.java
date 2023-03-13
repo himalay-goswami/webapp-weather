@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class WeatherService {
 
+    /*
+     * this class manages both the cache and dao operations for weather object. */
+
     private final WeatherDao weatherDao;
 
     private final CachedService cachedService;

@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class WeatherController {
 
+    /*
+    * this controller simply returns the JSP view page along with the latest data
+    * fetched from weather service */
+
     @Autowired
     private WeatherService weatherService;
 

@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserPreferenceService {
 
+    /*
+    * this class manages both the cache and dao operations for user preference values. */
+
     private final CachedService cachedService;
 
     private final UserPreferenceDao userPreferenceDao;

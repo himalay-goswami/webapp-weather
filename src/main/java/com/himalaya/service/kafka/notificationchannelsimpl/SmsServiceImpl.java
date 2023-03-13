@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class SmsServiceImpl {
 
+    /*
+     * Implementation class that makes use of service API to send the notification*/
+
     private final SmsServiceApi service;
 
     public SmsServiceImpl(SmsServiceApi service) {

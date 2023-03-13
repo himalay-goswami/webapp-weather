@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class Sender{
 
+    /*
+     * A simple kafka sender class*/
+
     private final KafkaTemplate<String, String> template;
 
     private static final String TOPIC = "notifications";

@@ -2,6 +2,9 @@ package com.himalaya.utils;
 
 public class ConstantUtils {
 
+	/*
+	* util class to hold constant values.*/
+
 	public static final String GRAPHQL_API_URL_1 = "http://localhost:9119/?query={getWeatherData{id}}";
 
 	public static final String GRAPHQL_API_URL_2 = "http://localhost:9118/?query={getWeatherData{id}}";
