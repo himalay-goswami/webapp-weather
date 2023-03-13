@@ -24,6 +24,8 @@ Here's a rough schematic of the entire operation which like an event.
 
 ![Untitled Diagram drawio](https://user-images.githubusercontent.com/89119726/224597590-6e1807d6-22db-4633-935d-5e2c10915afb.png)
 
-To start Kafka, I have added 3 CMD scripts to start zookeeper server, kafka server, and to create topics. Please edit the CMD scripts based on the installation of Kafka on your local machine. 
+To start Kafka, I have added 3 CMD scripts to start the zookeeper server, and kafka server, and to create topics. Please edit the CMD scripts based on the installation of Kafka on your local machine. 
 
-I have written unit tests for all the business logic classes and controllers and DAO, and made best efforts to make seperation of concerns as clear as possible. All the configurations are kept seperate in a config package. 
+I have written unit tests for all the business logic classes, controllers, and DAO, and made my best efforts to make separation of concerns as clear as possible. All the configurations are kept separate in a config package. 
+
+For database, please create a schema 'weather_data' and add two tables weather an user_pref matching the entity classes. Since I have not used Spring Data Jpa, ddl.auto=create/update feature sometimes behaves unexpectedly.
