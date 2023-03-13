@@ -4,7 +4,7 @@ To get started, first clone the two stubs:
 
 ### https://github.com/himalay-goswami/weather-stub-1 (port: 9119)
 
-### https://github.com/himalay-goswami/weather-stub-1 (port: 9118)
+### https://github.com/himalay-goswami/weather-stub-2 (port: 9118)
 
 Fetch the core application (webapp-weather). For simplicity, user Services in IntelliJ Ultimate to manage all 3 builds from a single window.
 
