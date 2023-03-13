@@ -1,6 +1,5 @@
 package com.himalaya.service.fetcherservice;
 
-import com.himalaya.model.WeatherDto;
 import com.himalaya.utils.ConstantUtils;
 import com.himalaya.utils.fetcher.FetcherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +15,11 @@ public class ServiceA {
     private FetcherService fetcherService;
 
     @Async
-    public CompletableFuture<WeatherDto> getData() {
+    public CompletableFuture<Double> getData() {
 
-        WeatherDto weatherDto = fetcherService
-                .fetchWeatherData(ConstantUtils.GRAPHQL_API_URL_1);
-
-        return CompletableFuture.completedFuture(weatherDto);
+        Double temperatureStub1 = fetcherService
+                .fetchWeatherData(ConstantUtils.API_1);
+        return CompletableFuture.completedFuture(temperatureStub1);
     }
 
 

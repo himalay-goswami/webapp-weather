@@ -58,12 +58,12 @@
                     <div class="row">
                             <div class="col-md-4">
                                 <label for="name">What value of minimum temperature you want to be notified?</label>
-                                <input type="text" id="name" class="form-control" placeholder="Enter Value">
+                                <input type="number" id="name" class="form-control" placeholder="Enter Value">
                             </div>
 
                             <div class="col-md-4">
                                 <label for="value">What value of maximum temperature you want to be notified?</label>
-                                <input type="text" id="value" class="form-control" placeholder="enter value">
+                                <input type="number" id="value" class="form-control" placeholder="enter value">
                             </div>
                             <div class="col-md-4">
                                 <button id="send" class="btn btn-default" type="submit" style="margin-bottom: 20px">Send</button>

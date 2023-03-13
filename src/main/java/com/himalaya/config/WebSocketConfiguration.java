@@ -22,3 +22,6 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
         registry.setApplicationDestinationPrefixes("/app");
     }
 }
+
+//here, we will have a kafka producer that will send the message object to consumer
+//publish message to the queue, which will be consumed by the consumer responsible to send multiple notifications

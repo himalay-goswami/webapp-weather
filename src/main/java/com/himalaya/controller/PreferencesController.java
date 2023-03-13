@@ -1,28 +1,45 @@
 package com.himalaya.controller;
 
-import com.himalaya.condition.NotificationCondition;
-import com.himalaya.model.notification.Greeting;
-import com.himalaya.model.notification.HelloMessage;
+import com.himalaya.entity.notification.Greeting;
+import com.himalaya.entity.shared.io.UserPreferenceDto;
+import com.himalaya.service.NotificationService;
+import com.himalaya.service.UserPreferenceService;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.util.HtmlUtils;
+
+import java.util.concurrent.ExecutionException;
 
 @Controller
 public class PreferencesController {
 
+    private final NotificationService notificationService;
+
+    private final UserPreferenceService userPreferenceService;
+
+    public PreferencesController(UserPreferenceService userPreferenceService, NotificationService notificationService) {
+        this.userPreferenceService = userPreferenceService;
+        this.notificationService = notificationService;
+    }
+
     @MessageMapping("/hello")
     @SendTo("/topic/greetings")
-    public Greeting greeting(HelloMessage message) {
+    public Greeting greeting(UserPreferenceDto preference) {
+
+        userPreferenceService.savePreferences(preference);
+
+        System.out.println(preference.getName() + ", " + preference.getValue());
 
         try{
-            if (NotificationCondition.getCondition(message.getName(), message.getValue())) {
-                System.out.println(Integer.parseInt(message.getName()) + "  " + message.getValue());
-                return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName() + "," + message.getValue()));
+            if (notificationService.checkForConditionFulfilment(preference)) {
+                System.out.println(preference.getName() + "  " + preference.getValue());
+                return new Greeting("Temperature Changed.");
             }
         }
         catch (NumberFormatException e){
             System.out.println("Number format exception: " +e);
+        } catch (ExecutionException | InterruptedException e) {
+            throw new RuntimeException(e);
         }
         return null;
     }

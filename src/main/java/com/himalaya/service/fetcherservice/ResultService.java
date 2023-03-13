@@ -1,13 +1,16 @@
 package com.himalaya.service.fetcherservice;
 
-import com.himalaya.model.Weather;
-import com.himalaya.model.WeatherDto;
+import com.himalaya.entity.shared.io.WeatherDto;
 import com.himalaya.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationStartupAware;
+import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -15,32 +18,40 @@ import java.util.concurrent.ExecutionException;
 public class ResultService {
 
     @Autowired
-    private ServiceA serviceA;
+    ServiceA serviceA;
     @Autowired
-    private ServiceB serviceB;
+    ServiceB serviceB;
 
     @Autowired
-    private WeatherService weatherService;
+    WeatherService weatherService;
 
-    @Scheduled(fixedRate = 10000)
-    private void getMeanTemperature() throws ExecutionException, InterruptedException {
-        double meanTemperature = weatherRetriever().get();
-        Weather weather = new Weather();
-        weather.setTemperature(meanTemperature);
-        weather.setTimeStamp(LocalTime.now().toString());
-        weather.setCityName("pune");
-        System.out.println(weather);
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss");
+    @Async
+    @Scheduled(fixedRate = 20000)
+    @EventListener(ApplicationStartupAware.class)
+    public void createWeatherEntity() throws ExecutionException, InterruptedException {
+
+        WeatherDto weather = new WeatherDto();
+        weather.setTemperature(getMeanTemperature());
+        weather.setCityName("Pune");
+        weather.setTimeStamp(formatter.format(LocalTime.now()));
         weatherService.saveWeatherData(weather);
     }
 
-    private CompletableFuture<Double> weatherRetriever() {
+    public double getMeanTemperature() throws ExecutionException, InterruptedException {
+        return weatherRetriever().get();
+    }
 
-        CompletableFuture<WeatherDto> WeatherDataSource1 = serviceA.getData();
-        CompletableFuture<WeatherDto> WeatherDataSource2 = serviceB.getData();
+    private CompletableFuture<Double> weatherRetriever() throws ExecutionException, InterruptedException {
+
+        CompletableFuture<Double> WeatherDataSource1 = serviceA.getData();
+        CompletableFuture<Double> WeatherDataSource2 = serviceB.getData();
+
+        System.out.println(WeatherDataSource1.get() + ", " + WeatherDataSource2.get());
 
         return WeatherDataSource1.thenCompose(
                 (fd1Value) -> WeatherDataSource2
                         .thenApply((fd2Value) ->
-                                fd1Value.temperature() + fd2Value.temperature()));
+                                (fd1Value + fd2Value)/2));
     }
 }

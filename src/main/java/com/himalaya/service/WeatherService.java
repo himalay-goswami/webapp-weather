@@ -1,40 +1,39 @@
 package com.himalaya.service;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.himalaya.dao.WeatherDao;
-import com.himalaya.model.Weather;
+import com.himalaya.entity.Weather;
+import com.himalaya.entity.shared.io.WeatherDto;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CachePut;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-//this class will persist data to database by calling the dao
+
 @Service
 @Slf4j
-@JsonIgnoreProperties
 public class WeatherService {
 
-    Logger logger = LoggerFactory.getLogger(WeatherService.class);
+    private final WeatherDao weatherDao;
 
-    @Autowired
-    private WeatherDao weatherDao;
+    private final CachedService cachedService;
 
-
-    @CachePut(value = "temperature")
-    @Transactional
-    public void saveWeatherData(Weather weather){
-        logger.info("Saving data to db");
-        System.out.println("Saving data to db...");
-        weatherDao.save(weather);
+    public WeatherService(WeatherDao weatherDao, CachedService cachedService) {
+        this.weatherDao = weatherDao;
+        this.cachedService = cachedService;
     }
 
-    @Transactional
+    public void saveWeatherData(WeatherDto weather){
+        cachedService.setWeatherCached(weather);
+        Weather weatherEntity = new Weather();
+        BeanUtils.copyProperties(weather, weatherEntity);
+        weatherDao.save(weatherEntity);
+    }
+
     public Weather getLatestData(){
-        logger.info(String.valueOf(weatherDao.getLatestData()));
         return weatherDao.getLatestData();
     }
+
+    public WeatherDto getLatestCachedData(){
+        return cachedService.getLatestCachedData();
+    }
+
 }

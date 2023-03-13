@@ -1,11 +1,11 @@
 package com.himalaya.dao;
 
-import com.himalaya.model.Weather;
+import com.himalaya.entity.Weather;
 
 public interface WeatherDao {
 
     /* the party */
-    public Weather getLatestData();
+    Weather getLatestData();
 
-    public void save(Weather weather);
+    void save(Weather weather);
 }

@@ -15,8 +15,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@EnableWebMvc //enable: context:annotation-config
-@ComponentScan(basePackages = "com.himalaya") //enable: context: basePackages = ""
+@EnableWebMvc
+@ComponentScan(basePackages = "com.himalaya")
 @EnableAsync
 @EnableScheduling
 @PropertySource("classpath:database.properties")
@@ -25,7 +25,6 @@ public class WeatherAppConfig implements WebMvcConfigurer {
 
     @Bean
     public ViewResolver viewResolver() {
-
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix("/resource/");
         viewResolver.setSuffix(".jsp");
@@ -42,9 +41,9 @@ public class WeatherAppConfig implements WebMvcConfigurer {
     @Bean
     public TaskExecutor taskExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(5);
+        executor.setCorePoolSize(10);
         executor.setMaxPoolSize(10);
-        executor.setQueueCapacity(25);
+        executor.setQueueCapacity(100);
         return executor;
     }
 

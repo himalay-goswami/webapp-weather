@@ -25,7 +25,7 @@ public class HibernateConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("com.himalaya.model");
+        sessionFactory.setPackagesToScan("com.himalaya.entity");
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }
